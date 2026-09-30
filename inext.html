@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="JobFinder - Find your next career opportunity."
+    >
+
+    <title>JobFinder | Find Your Dream Job</title>
+
+    <style>
+        /* =========================
+           RESET & GLOBAL STYLES
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #eff6ff;
+            --dark: #111827;
+            --text: #374151;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --white: #ffffff;
+            --background: #f8fafc;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .post-job-btn {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .post-job-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d4ed8 0%,
+                    #2563eb 55%,
+                    #3b82f6 100%
+                );
+            color: white;
+            padding: 75px 0 90px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.7rem);
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.92;
+            margin-bottom: 32px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 10px;
+            border-radius: 14px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr auto;
+            gap: 10px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 14px;
+            border-right: 1px solid var(--border);
+        }
+
+        .search-field span {
+            font-size: 1.1rem;
+        }
+
+        .search-field input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 12px 0;
+            color: var(--dark);
+        }
+
+        .search-button {
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 0 28px;
+            border-radius: 9px;
+            font-weight: 700;
+        }
+
+        .search-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        main {
+            padding: 55px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* =========================
+           FILTERS
+        ========================== */
+
+        .filters {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            position: sticky;
+            top: 95px;
+        }
+
+        .filters h2 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 12px;
+            outline: none;
+            background: white;
+            color: var(--text);
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .clear-btn {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .clear-btn:hover {
+            background: #f3f4f6;
+        }
+
+        /* =========================
+           JOB SECTION
+        ========================== */
+
+        .jobs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .jobs-header h2 {
+            color: var(--dark);
+            font-size: 1.55rem;
+        }
+
+        .job-count {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .jobs-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .job-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            display: grid;
+            grid-template-columns: 58px 1fr auto;
+            gap: 18px;
+            align-items: center;
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                border-color 0.2s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: #bfdbfe;
+        }
+
+        .company-logo {
+            width: 58px;
+            height: 58px;
+            border-radius: 12px;
+            background: var(--secondary);
+            color: var(--primary);
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .job-title {
+            color: var(--dark);
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+        }
+
+        .company-name {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .salary {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .apply-btn {
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 11px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 55px 20px;
+        }
+
+        .no-results .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .no-results h3 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .no-results p {
+            color: var(--muted);
+        }
+
+        /* =========================
+           MODAL
+        ========================== */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            width: min(650px, 100%);
+            max-height: 92vh;
+            overflow-y: auto;
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            animation: modalIn 0.2s ease-out;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .modal-header h2 {
+            color: var(--dark);
+        }
+
+        .modal-header p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .close-modal {
+            border: none;
+            background: #f3f4f6;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            color: var(--text);
+            flex-shrink: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .form-group {
+            margin-bottom: 2px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 7px;
+        }
+
+        .form-group label .required {
+            color: var(--danger);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 12px;
+            outline: none;
+            color: var(--text);
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group input.invalid,
+        .form-group textarea.invalid {
+            border-color: var(--danger);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.78rem;
+            margin-top: 4px;
+            min-height: 16px;
+        }
+
+        .file-note {
+            color: var(--muted);
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 13px;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .success-message {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #111827;
+            color: #d1d5db;
+            padding: 35px 0;
+            margin-top: 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr;
+            }
+
+            .search-field {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .search-button {
+                padding: 13px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                position: static;
+            }
+
+            .filter-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .clear-btn {
+                margin-top: 4px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .hero {
+                padding: 50px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.15rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .job-card {
+                grid-template-columns: 48px 1fr;
+                gap: 13px;
+            }
+
+            .company-logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .job-action {
+                grid-column: 1 / -1;
+            }
+
+            .apply-btn {
+                width: 100%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .modal {
+                padding: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-row {
+                grid-template-columns: 1fr;
+            }
+
+            .jobs-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .job-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+        <div class="container navbar">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">J</span>
+                JobFinder
+            </a>
+
+            <nav class="nav-links">
+                <a href="#jobs">Find Jobs</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#jobs" class="post-job-btn">Browse Jobs</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <h1>Find Your Next Career Opportunity</h1>
+
+            <p>
+                Search thousands of job opportunities and find the right
+                position for your skills and experience.
+            </p>
+
+            <div class="search-box">
+
+                <div class="search-field">
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        id="keywordSearch"
+                        placeholder="Job title, company or keyword"
+                    >
+                </div>
+
+                <div class="search-field">
+                    <span>📍</span>
+
+                    <input
+                        type="text"
+                        id="locationSearch"
+                        placeholder="Location"
+                    >
+                </div>
+
+                <button
+                    class="search-button"
+                    id="searchButton"
+                    type="button"
+                >
+                    Search Jobs
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main id="jobs">
+
+        <div class="container content-grid">
+
+            <!-- FILTERS -->
+
+            <aside class="filters">
+
+                <h2>Filter Jobs</h2>
+
+                <div class="filter-group">
+                    <label for="experienceFilter">
+                        Experience
+                    </label>
+
+                    <select id="experienceFilter">
+                        <option value="">All Experience</option>
+                        <option value="Entry Level">Entry Level</option>
+                        <option value="1-3 Years">1-3 Years</option>
+                        <option value="3-5 Years">3-5 Years</option>
+                        <option value="5+ Years">5+ Years</option>
+                    </select>
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="salaryFilter">
+                        Minimum Salary
+                    </label>
+
+                    <select id="salaryFilter">
+                        <option value="0">Any Salary</option>
+                        <option value="300000">₹3 LPA</option>
+                        <option value="500000">₹5 LPA</option>
+                        <option value="800000">₹8 LPA</option>
+                        <option value="1000000">₹10 LPA</option>
+                        <option value="1500000">₹15 LPA</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="typeFilter">
+                        Job Type
+                    </label>
+
+                    <select id="typeFilter">
+                        <option value="">All Types</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Remote">Remote</option>
+                        <option value="Contract">Contract</option>
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="clear-btn"
+                    id="clearFilters"
+                >
+                    Clear Filters
+                </button>
+
+            </aside>
+
+
+            <!-- JOB LIST -->
+
+            <section>
+
+                <div class="jobs-header">
+
+                    <div>
+                        <h2>Latest Job Opportunities</h2>
+                        <p class="job-count" id="jobCount">
+                            Showing 0 jobs
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="jobs-list" id="jobsList"></div>
+
+
+                <div class="no-results" id="noResults">
+
+                    <div class="icon">🔎</div>
+
+                    <h3>No jobs found</h3>
+
+                    <p>
+                        Try changing your search or filter options.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         APPLICATION MODAL
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="applicationModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="applicationTitle"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="applicationTitle">
+                        Apply for Position
+                    </h2>
+
+                    <p id="applicationCompany">
+                        Complete the application below.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="close-modal"
+                    id="closeModal"
+                    aria-label="Close application form"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="success-message"
+                id="successMessage"
+            >
+                <strong>Application submitted successfully!</strong>
+                <br>
+                This demo stores the application only in your browser.
+            </div>
+
+
+            <form id="applicationForm" novalidate>
+
+                <input
+                    type="hidden"
+                    id="selectedJob"
+                    name="selectedJob"
+                >
+
+                <div class="form-grid">
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="John Doe"
+                        >
+
+                        <div
+                            class="error-message"
+                            id="fullNameError"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="john@example.com"
+                        >
+
+                        <div
+                            class="error-message"
+                            id="emailError"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="+91 9876543210"
+                        >
+
+                        <div
+                            class="error-message"
+                            id="phoneError"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="applicantExperience">
+                            Experience <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="applicantExperience"
+                            name="experience"
+                        >
+                            <option value="">
+                                Select experience
+                            </option>
+
+                            <option value="Entry Level">
+                                Entry Level
+                            </option>
+
+                            <option value="1-3 Years">
+                                1-3 Years
+                            </option>
+
+                            <option value="3-5 Years">
+                                3-5 Years
+                            </option>
+
+                            <option value="5+ Years">
+                                5+ Years
+                            </option>
+                        </select>
+
+                        <div
+                            class="error-message"
+                            id="experienceError"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- RESUME -->
+
+                    <div class="form-group full">
+
+                        <label for="resume">
+                            Resume <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                        >
+
+                        <p class="file-note">
+                            Accepted formats: PDF, DOC, DOCX. Maximum 5 MB.
+                        </p>
+
+                        <div
+                            class="error-message"
+                            id="resumeError"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- COVER LETTER -->
+
+                    <div class="form-group full">
+
+                        <label for="coverLetter">
+                            Cover Letter
+                        </label>
+
+                        <textarea
+                            id="coverLetter"
+                            name="coverLetter"
+                            placeholder="Tell the employer why you are a good fit..."
+                        ></textarea>
+
+                        <div
+                            class="error-message"
+                            id="coverLetterError"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <div class="form-group full">
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            Submit Application
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer id="contact">
+
+        <div class="container footer-content">
+
+            <div class="footer-logo">
+                JobFinder
+            </div>
+
+            <p class="footer-text">
+                © 2026 JobFinder. Built for demonstration purposes.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           JOB DATA
+        ========================== */
+
+        const jobs = [
+            {
+                id: 1,
+                title: "Frontend Developer",
+                company: "TechNova Solutions",
+                location: "Pune, Maharashtra",
+                experience: "1-3 Years",
+                salary: 700000,
+                salaryText: "₹7 - ₹10 LPA",
+                type: "Full Time",
+                logo: "TN"
+            },
+
+            {
+                id: 2,
+                title: "UI/UX Designer",
+                company: "Creative Labs",
+                location: "Mumbai, Maharashtra",
+                experience: "1-3 Years",
+                salary: 600000,
+                salaryText: "₹6 - ₹9 LPA",
+                type: "Full Time",
+                logo: "CL"
+            },
+
+            {
+                id: 3,
+                title: "Backend Developer",
+                company: "CloudStack Technologies",
+                location: "Bangalore, Karnataka",
+                experience: "3-5 Years",
+                salary: 1100000,
+                salaryText: "₹11 - ₹16 LPA",
+                type: "Full Time",
+                logo: "CS"
+            },
+
+            {
+                id: 4,
+                title: "Data Analyst",
+                company: "DataWorks India",
+                location: "Hyderabad, Telangana",
+                experience: "1-3 Years",
+                salary: 650000,
+                salaryText: "₹6.5 - ₹10 LPA",
+                type: "Full Time",
+                logo: "DW"
+            },
+
+            {
+                id: 5,
+                title: "React Developer",
+                company: "InnovateX",
+                location: "Remote",
+                experience: "3-5 Years",
+                salary: 1000000,
+                salaryText: "₹10 - ₹15 LPA",
+                type: "Remote",
+                logo: "IX"
+            },
+
+            {
+                id: 6,
+                title: "Digital Marketing Executive",
+                company: "GrowthHub",
+                location: "Delhi, India",
+                experience: "Entry Level",
+                salary: 400000,
+                salaryText: "₹4 - ₹6 LPA",
+                type: "Full Time",
+                logo: "GH"
+            },
+
+            {
+                id: 7,
+                title: "Senior Software Engineer",
+                company: "NextGen Systems",
+                location: "Chennai, Tamil Nadu",
+                experience: "5+ Years",
+                salary: 1600000,
+                salaryText: "₹16 - ₹24 LPA",
+                type: "Full Time",
+                logo: "NG"
+            },
+
+            {
+                id: 8,
+                title: "Content Writer",
+                company: "MediaCraft",
+                location: "Remote",
+                experience: "Entry Level",
+                salary: 350000,
+                salaryText: "₹3.5 - ₹5 LPA",
+                type: "Remote",
+                logo: "MC"
+            },
+
+            {
+                id: 9,
+                title: "Product Manager",
+                company: "FinTech Pro",
+                location: "Pune, Maharashtra",
+                experience: "5+ Years",
+                salary: 1800000,
+                salaryText: "₹18 - ₹25 LPA",
+                type: "Full Time",
+                logo: "FP"
+            },
+
+            {
+                id: 10,
+                title: "QA Engineer",
+                company: "QualityFirst",
+                location: "Noida, Uttar Pradesh",
+                experience: "3-5 Years",
+                salary: 800000,
+                salaryText: "₹8 - ₹12 LPA",
+                type: "Contract",
+                logo: "QF"
+            }
+        ];
+
+
+        /* =========================
+           DOM ELEMENTS
+        ========================== */
+
+        const jobsList = document.getElementById("jobsList");
+        const jobCount = document.getElementById("jobCount");
+        const noResults = document.getElementById("noResults");
+
+        const keywordSearch =
+            document.getElementById("keywordSearch");
+
+        const locationSearch =
+            document.getElementById("locationSearch");
+
+        const experienceFilter =
+            document.getElementById("experienceFilter");
+
+        const salaryFilter =
+            document.getElementById("salaryFilter");
+
+        const typeFilter =
+            document.getElementById("typeFilter");
+
+        const clearFilters =
+            document.getElementById("clearFilters");
+
+        const searchButton =
+            document.getElementById("searchButton");
+
+        const modal =
+            document.getElementById("applicationModal");
+
+        const closeModal =
+            document.getElementById("closeModal");
+
+        const applicationForm =
+            document.getElementById("applicationForm");
+
+        const selectedJob =
+            document.getElementById("selectedJob");
+
+        const applicationTitle =
+            document.getElementById("applicationTitle");
+
+        const applicationCompany =
+            document.getElementById("applicationCompany");
+
+        const successMessage =
+            document.getElementById("successMessage");
+
+
+        /* =========================
+           RENDER JOBS
+        ========================== */
+
+        function renderJobs(jobArray) {
+
+            jobsList.innerHTML = "";
+
+            jobCount.textContent =
+                `Showing ${jobArray.length} ${
+                    jobArray.length === 1 ? "job" : "jobs"
+                }`;
+
+            if (jobArray.length === 0) {
+                noResults.style.display = "block";
+                return;
+            }
+
+            noResults.style.display = "none";
+
+            jobArray.forEach(job => {
+
+                const card = document.createElement("article");
+
+                card.className = "job-card";
+
+                card.innerHTML = `
+
+                    <div class="company-logo">
+                        ${job.logo}
+                    </div>
+
+                    <div class="job-info">
+
+                        <h3 class="job-title">
+                            ${job.title}
+                        </h3>
+
+                        <div class="company-name">
+                            ${job.company}
+                        </div>
+
+                        <div class="job-meta">
+
+                            <span>
+                                📍 ${job.location}
+                            </span>
+
+                            <span>
+                                💼 ${job.experience}
+                            </span>
+
+                            <span class="salary">
+                                💰 ${job.salaryText}
+                            </span>
+
+                            <span>
+                                🕒 ${job.type}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="job-action">
+
+                        <button
+                            type="button"
+                            class="apply-btn"
+                            data-job-id="${job.id}"
+                        >
+                            Apply Now
+                        </button>
+
+                    </div>
+                `;
+
+                jobsList.appendChild(card);
+            });
+
+            document
+                .querySelectorAll(".apply-btn")
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+                            openApplication(
+                                Number(button.dataset.jobId)
+                            );
+                        }
+                    );
+
+                });
+        }
+
+
+        /* =========================
+           FILTER JOBS
+        ========================== */
+
+        function filterJobs() {
+
+            const keyword =
+                keywordSearch.value
+                    .trim()
+                    .toLowerCase();
+
+            const location =
+                locationSearch.value
+                    .trim()
+                    .toLowerCase();
+
+            const experience =
+                experienceFilter.value;
+
+            const minimumSalary =
+                Number(salaryFilter.value);
+
+            const jobType =
+                typeFilter.value;
+
+
+            const filteredJobs = jobs.filter(job => {
+
+                const searchableText = `
+                    ${job.title}
+                    ${job.company}
+                    ${job.location}
+                    ${job.experience}
+                    ${job.type}
+                `.toLowerCase();
+
+                const matchesKeyword =
+                    !keyword ||
+                    searchableText.includes(keyword);
+
+                const matchesLocation =
+                    !location ||
+                    job.location
+                        .toLowerCase()
+                        .includes(location);
+
+                const matchesExperience =
+                    !experience ||
+                    job.experience === experience;
+
+                const matchesSalary =
+                    job.salary >= minimumSalary;
+
+                const matchesType =
+                    !jobType ||
+                    job.type === jobType;
+
+                return (
+                    matchesKeyword &&
+                    matchesLocation &&
+                    matchesExperience &&
+                    matchesSalary &&
+                    matchesType
+                );
+            });
+
+            renderJobs(filteredJobs);
+        }
+
+
+        /* =========================
+           EVENT LISTENERS
+        ========================== */
+
+        keywordSearch.addEventListener(
+            "input",
+            filterJobs
+        );
+
+        locationSearch.addEventListener(
+            "input",
+            filterJobs
+        );
+
+        experienceFilter.addEventListener(
+            "change",
+            filterJobs
+        );
+
+        salaryFilter.addEventListener(
+            "change",
+            filterJobs
+        );
+
+        typeFilter.addEventListener(
+            "change",
+            filterJobs
+        );
+
+        searchButton.addEventListener(
+            "click",
+            filterJobs
+        );
+
+
+        clearFilters.addEventListener(
+            "click",
+            () => {
+
+                keywordSearch.value = "";
+                locationSearch.value = "";
+                experienceFilter.value = "";
+                salaryFilter.value = "0";
+                typeFilter.value = "";
+
+                renderJobs(jobs);
+            }
+        );
+
+
+        /* =========================
+           OPEN APPLICATION
+        ========================== */
+
+        function openApplication(jobId) {
+
+            const job = jobs.find(
+                item => item.id === jobId
+            );
+
+            if (!job) return;
+
+            selectedJob.value = job.title;
+
+            applicationTitle.textContent =
+                `Apply for ${job.title}`;
+
+            applicationCompany.textContent =
+                `${job.company} • ${job.location}`;
+
+            successMessage.classList.remove("active");
+
+            applicationForm.reset();
+
+            selectedJob.value = job.title;
+
+            clearValidationErrors();
+
+            modal.classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+            document
+                .getElementById("fullName")
+                .focus();
+        }
+
+
+        /* =========================
+           CLOSE APPLICATION
+        ========================== */
+
+        function closeApplication() {
+
+            modal.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        closeModal.addEventListener(
+            "click",
+            closeApplication
+        );
+
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if (event.target === modal) {
+                    closeApplication();
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape" &&
+                    modal.classList.contains("active")
+                ) {
+                    closeApplication();
+                }
+
+            }
+        );
+
+
+        /* =========================
+           VALIDATION HELPERS
+        ========================== */
+
+        function showError(
+            fieldId,
+            errorId,
+            message
+        ) {
+
+            const field =
+                document.getElementById(fieldId);
+
+            const error =
+                document.getElementById(errorId);
+
+            field.classList.add("invalid");
+
+            error.textContent = message;
+
+        }
+
+
+        function clearError(
+            fieldId,
+            errorId
+        ) {
+
+            const field =
+                document.getElementById(fieldId);
+
+            const error =
+                document.getElementById(errorId);
+
+            field.classList.remove("invalid");
+
+            error.textContent = "";
+
+        }
+
+
+        function clearValidationErrors() {
+
+            clearError(
+                "fullName",
+                "fullNameError"
+            );
+
+            clearError(
+                "email",
+                "emailError"
+            );
+
+            clearError(
+                "phone",
+                "phoneError"
+            );
+
+            clearError(
+                "applicantExperience",
+                "experienceError"
+            );
+
+            clearError(
+                "resume",
+                "resumeError"
+            );
+
+        }
+
+
+        /* =========================
+           FORM VALIDATION
+        ========================== */
+
+        applicationForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+                clearValidationErrors();
+
+                let isValid = true;
+
+
+                /* NAME */
+
+                const fullName =
+                    document
+                        .getElementById("fullName")
+                        .value
+                        .trim();
+
+                if (fullName.length < 3) {
+
+                    showError(
+                        "fullName",
+                        "fullNameError",
+                        "Please enter your full name."
+                    );
+
+                    isValid = false;
+                }
+
+
+                /* EMAIL */
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+
+                    showError(
+                        "email",
+                        "emailError",
+                        "Please enter a valid email address."
+                    );
+
+                    isValid = false;
+                }
+
+
+                /* PHONE */
+
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
+
+                const phonePattern =
+                    /^[+]?[0-9\s()-]{10,15}$/;
+
+                if (!phonePattern.test(phone)) {
+
+                    showError(
+                        "phone",
+                        "phoneError",
+                        "Please enter a valid phone number."
+                    );
+
+                    isValid = false;
+                }
+
+
+                /* EXPERIENCE */
+
+                const experience =
+                    document
+                        .getElementById(
+                            "applicantExperience"
+                        )
+                        .value;
+
+                if (!experience) {
+
+                    showError(
+                        "applicantExperience",
+                        "experienceError",
+                        "Please select your experience."
+                    );
+
+                    isValid = false;
+                }
+
+
+                /* RESUME */
+
+                const resume =
+                    document
+                        .getElementById("resume")
+                        .files[0];
+
+                if (!resume) {
+
+                    showError(
+                        "resume",
+                        "resumeError",
+                        "Please upload your resume."
+                    );
+
+                    isValid = false;
+
+                } else {
+
+                    const allowedTypes = [
+                        "application/pdf",
+                        "application/msword",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    ];
+
+                    const maxSize =
+                        5 * 1024 * 1024;
+
+                    if (
+                        !allowedTypes.includes(
+                            resume.type
+                        )
+                    ) {
+
+                        showError(
+                            "resume",
+                            "resumeError",
+                            "Only PDF, DOC, and DOCX files are allowed."
+                        );
+
+                        isValid = false;
+                    }
+
+                    if (resume.size > maxSize) {
+
+                        showError(
+                            "resume",
+                            "resumeError",
+                            "Resume must be smaller than 5 MB."
+                        );
+
+                        isValid = false;
+                    }
+                }
+
+
+                /* STOP IF INVALID */
+
+                if (!isValid) {
+                    return;
+                }
+
+
+                /* SUCCESS */
+
+                successMessage.classList.add(
+                    "active"
+                );
+
+                applicationForm.reset();
+
+                selectedJob.value =
+                    applicationTitle.textContent
+                        .replace("Apply for ", "");
+
+                successMessage.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }
+        );
+
+
+        /* =========================
+           INITIAL RENDER
+        ========================== */
+
+        renderJobs(jobs);
+
+    </script>
+
+</body>
+</html>
